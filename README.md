@@ -6,7 +6,9 @@ This is a template repository designed to be the hello-world of
 It's a minimal web app where users can make 1-to-1 connections with each other
 and compute the larger of two numbers.
 
-## Usage
+Hosted on github pages: https://voltrevo.github.io/mpc-hello/.
+
+## Running Locally
 
 ```sh
 npm install
