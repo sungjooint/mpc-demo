@@ -1,12 +1,50 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MPC Hello</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MPC Hello</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+
+<body>
+  <div class="app">
+    <h1>MPC Hello World</h1>
+
+    <div id="step-1" class="step">
+      <button id="host-btn">Host</button>
+      <button id="join-btn">Join</button>
+    </div>
+
+    <div id="step-2-host" class="step hidden">
+      <p>Joining code:</p>
+      <div id="host-code" class="code-box"></div>
+    </div>
+
+    <div id="step-2-join" class="step hidden">
+      <label for="join-code-input">Enter host code:</label>
+      <input type="text" id="join-code-input">
+      <button id="join-submit-btn">Join</button>
+    </div>
+
+    <div id="step-3" class="step hidden">
+      <label for="number-input">Enter your number:</label>
+      <input type="number" id="number-input">
+      <button id="submit-number-btn">Submit</button>
+    </div>
+
+    <div id="step-4" class="step hidden">
+      <p>Calculating...</p>
+      <div class="spinner"></div>
+    </div>
+
+    <div id="step-5" class="step hidden">
+      <h2>Result: <span id="result-value"></span></h2>
+    </div>
+  </div>
+
+  <script type="module" src="src/main.ts"></script>
+</body>
+
 </html>
