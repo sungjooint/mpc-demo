@@ -1,9 +1,12 @@
 import App from './App';
 
 const hostBtn = document.getElementById('host-btn') as HTMLButtonElement;
+const joinCodeInput = document.getElementById('join-code-input') as HTMLInputElement;
 const joinBtn = document.getElementById('join-btn') as HTMLButtonElement;
-const submitNumberBtn = document.getElementById('submit-number-btn') as HTMLButtonElement;
+const joinSpinner = document.getElementById('join-spinner') as HTMLDivElement;
 const joinSubmitBtn = document.getElementById('join-submit-btn') as HTMLButtonElement;
+const numberInput = document.getElementById('number-input') as HTMLInputElement;
+const submitNumberBtn = document.getElementById('submit-number-btn') as HTMLButtonElement;
 
 const step1 = document.getElementById('step-1') as HTMLDivElement;
 const step2Host = document.getElementById('step-2-host') as HTMLDivElement;
@@ -41,6 +44,8 @@ async function handleJoinSubmit() {
   const joinCodeInput = document.getElementById('join-code-input') as HTMLInputElement;
   const code = joinCodeInput.value;
 
+  joinSpinner.classList.remove('hidden');
+
   await app.connect(code, 'bob');
 
   step2Join.classList.add('hidden');
@@ -71,3 +76,15 @@ hostBtn.addEventListener('click', handleHost);
 joinBtn.addEventListener('click', handleJoin);
 submitNumberBtn.addEventListener('click', handleSubmitNumber);
 joinSubmitBtn.addEventListener('click', handleJoinSubmit);
+
+joinCodeInput.addEventListener('keydown', event => {
+  if (event.key === 'Enter') {
+    handleJoinSubmit();
+  }
+});
+
+numberInput.addEventListener('keydown', event => {
+  if (event.key === 'Enter') {
+    handleSubmitNumber();
+  }
+});

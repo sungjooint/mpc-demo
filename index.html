@@ -26,6 +26,9 @@
       <label for="join-code-input">Enter host code:</label>
       <input type="text" id="join-code-input">
       <button id="join-submit-btn">Join</button>
+      <div class="spinner-container">
+        <div id="join-spinner" class="spinner hidden"></div>
+      </div>
     </div>
 
     <div id="step-3" class="step hidden">
@@ -36,7 +39,9 @@
 
     <div id="step-4" class="step hidden">
       <p>Calculating...</p>
-      <div class="spinner"></div>
+      <div class="spinner-container">
+        <div class="spinner"></div>
+      </div>
     </div>
 
     <div id="step-5" class="step hidden">
