@@ -14,8 +14,28 @@
 
     <div class="step-container">
       <div id="step-1" class="step">
-        <button id="host-btn">Host</button>
-        <button id="join-btn">Join</button>
+        <div style="text-align: left;">
+          Welcome to the hello-world of MPC
+          (<a href="https://github.com/voltrevo/mpc-hello">view source</a>).
+        </div>
+        <div style="text-align: left; margin-top: 1em;">
+          To start, one party should click host. This will generate a code that
+          the other party can use to join. It's an end-to-end encrypted P2P
+          connection. There is no server.
+        </div>
+        <div style="text-align: left; margin-top: 1em;">
+          Once connected, both parties will enter a number and the
+          larger number will be calculated. The smaller number is kept
+          cryptographically secret.
+        </div>
+        <div style="text-align: left; margin-top: 1em;">
+          This is just a simple example, but mpc-framework makes it easy
+          to do this with any function.
+        </div>
+        <div>
+          <button id="host-btn">Host</button>&nbsp;
+          <button id="join-btn">Join</button>
+        </div>
       </div>
 
       <div id="step-2-host" class="step hidden">
