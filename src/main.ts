@@ -26,7 +26,7 @@ async function handleHost() {
   step1.classList.add('hidden');
   step2Host.classList.remove('hidden');
 
-  await app.host(code);
+  await app.connect(code, 'alice');
 
   step2Host.classList.add('hidden');
   step3.classList.remove('hidden');
@@ -41,7 +41,7 @@ async function handleJoinSubmit() {
   const joinCodeInput = document.getElementById('join-code-input') as HTMLInputElement;
   const code = joinCodeInput.value;
 
-  await app.join(code);
+  await app.connect(code, 'bob');
 
   step2Join.classList.add('hidden');
   step3.classList.remove('hidden');

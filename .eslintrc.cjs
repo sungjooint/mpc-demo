@@ -29,5 +29,6 @@ module.exports = {
     'no-useless-constructor': 'off',
     'capitalized-comments': 'off',
     'no-await-in-loop': 'off',
+    'no-return-await': 'off',
   },
 };
