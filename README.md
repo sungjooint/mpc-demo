@@ -12,3 +12,9 @@ and compute the larger of two numbers.
 npm install
 npm run dev
 ```
+
+## License
+
+This is a template repository. You may use this as a starting point for your own
+work free from any restriction. This software is provided "AS IS" as described
+by the MIT license.
