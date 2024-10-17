@@ -21,9 +21,12 @@ button {
 }
 
 .header {
-  margin-bottom: 20px;
   font-size: 1.75rem;
   font-weight: bold;
+  padding: 20px;
+  background-color: #b6cee8;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 h1 {
@@ -32,9 +35,8 @@ h1 {
 }
 
 .app {
-  height: 15em;
+  height: 18em;
   text-align: center;
-  padding: 20px;
   background: #ffffff;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -49,6 +51,7 @@ h1 {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding: 20px;
 }
 
 .hidden {
