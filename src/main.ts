@@ -4,6 +4,7 @@ const hostBtn = document.getElementById('host-btn') as HTMLButtonElement;
 const joinCodeInput = document.getElementById('join-code-input') as HTMLInputElement;
 const joinBtn = document.getElementById('join-btn') as HTMLButtonElement;
 const joinSpinner = document.getElementById('join-spinner') as HTMLDivElement;
+const joinSubmitContainer = document.getElementById('join-submit-container') as HTMLDivElement;
 const joinSubmitBtn = document.getElementById('join-submit-btn') as HTMLButtonElement;
 const numberInput = document.getElementById('number-input') as HTMLInputElement;
 const submitNumberBtn = document.getElementById('submit-number-btn') as HTMLButtonElement;
@@ -45,6 +46,7 @@ async function handleJoinSubmit() {
   const code = joinCodeInput.value;
 
   joinSpinner.classList.remove('hidden');
+  joinSubmitContainer.classList.add('hidden');
 
   await app.connect(code, 'bob');
 
