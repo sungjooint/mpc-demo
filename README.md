@@ -3,6 +3,10 @@
 This is a template repository designed to be the hello-world of
 [mpc-framework](https://github.com/voltrevo/mpc-framework).
 
+It uses [summon](https://github.com/voltrevo/summon) for circuit generation
+and [emp-wasm-backend](https://github.com/voltrevo/emp-wasm-backend) for
+secure 2PC.
+
 It's a minimal web app where users can make 1-to-1 connections with each other
 and compute the larger of two numbers.
 
