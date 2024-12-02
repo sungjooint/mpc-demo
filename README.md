@@ -12,6 +12,11 @@ and compute the larger of two numbers.
 
 Hosted on github pages: https://voltrevo.github.io/mpc-hello/.
 
+- 250 sloc
+- Simple frontend
+- P2P end-to-end encrypted communication
+- Circuit code included via ordinary project files
+
 ## Running Locally
 
 ```sh
