@@ -7,12 +7,20 @@ It uses [summon](https://github.com/voltrevo/summon) for circuit generation
 and [emp-wasm-backend](https://github.com/voltrevo/emp-wasm-backend) for
 secure 2PC.
 
-There are three applications that cover the most common use-cases. MPC between:
-* client <\> client: 
-* client <\> server: 
-* server <\> server: 
+It's a minimal web app where users can make 1-to-1 connections with a server
+and compute the larger of two numbers.
 
-Hosted on github pages: https://voltrevo.github.io/mpc-hello/.
+- 250 sloc
+- Simple frontend
+- Communication with WebSocket
+- Circuit code included via ordinary project files
+
+## Running Locally
+
+```sh
+npm install
+npm run dev
+```
 
 ## License
 

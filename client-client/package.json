@@ -1,0 +1,21 @@
+{
+  "name": "mpc-hello-client-client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "emp-wasm-backend": "^0.1.0",
+    "events": "^3.3.0",
+    "mpc-framework": "^0.1.1",
+    "rtc-pair-socket": "^0.1.5",
+    "summon-ts": "^0.2.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  }
+}

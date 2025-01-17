@@ -45,14 +45,10 @@ export default class App {
 
     const protocol = await generateProtocol();
 
-    const session = protocol.join(
-      party,
-      input,
-      (to, msg) => {
-        assert(to === otherParty, 'Unexpected party');
-        socket.send(msg);
-      },
-    );
+    const session = protocol.join(party, input, (to, msg) => {
+      assert(to === otherParty, 'Unexpected party');
+      socket.send(msg);
+    });
 
     this.msgQueue.stream((msg: unknown) => {
       if (!(msg instanceof Uint8Array)) {
@@ -65,9 +61,9 @@ export default class App {
     const output = await session.output();
 
     if (
-      output === null
-      || typeof output !== 'object'
-      || typeof output.main !== 'number'
+      output === null ||
+      typeof output !== 'object' ||
+      typeof output.main !== 'number'
     ) {
       throw new Error('Unexpected output');
     }

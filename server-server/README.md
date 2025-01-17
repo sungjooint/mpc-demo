@@ -1,4 +1,4 @@
-# mpc-hello
+# mpc-hello (server <> server)
 
 This is a template repository designed to be the hello-world of
 [mpc-framework](https://github.com/voltrevo/mpc-framework).
@@ -7,12 +7,21 @@ It uses [summon](https://github.com/voltrevo/summon) for circuit generation
 and [emp-wasm-backend](https://github.com/voltrevo/emp-wasm-backend) for
 secure 2PC.
 
-There are three applications that cover the most common use-cases. MPC between:
-* client <\> client: 
-* client <\> server: 
-* server <\> server: 
+It's a computation between two servers to find the larger of two numbers.
 
-Hosted on github pages: https://voltrevo.github.io/mpc-hello/.
+- ~100 sloc
+- Communication with WebSocket
+- Circuit code included via ordinary project files
+
+## Running Locally
+
+```sh
+npm install
+npm run server1
+npm run server2
+```
+
+The two input numbers are encoded in a constant for the sake of the example, and the computation's output will be displayed immediately.
 
 ## License
 

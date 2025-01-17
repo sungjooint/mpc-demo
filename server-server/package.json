@@ -1,0 +1,21 @@
+{
+  "name": "mpc-hello-server-server",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "server1": "tsx ./src/server1.ts",
+    "server2": "tsx ./src/server2.ts"
+  },
+  "dependencies": {
+    "assert": "^2.1.0",
+    "emp-wasm-backend": "^0.2.2",
+    "mpc-framework": "^0.1.4",
+    "summon-ts": "file:../../summon-ts",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.2.2"
+  }
+}

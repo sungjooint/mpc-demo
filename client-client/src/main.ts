@@ -1,13 +1,21 @@
 import App from './App';
 
 const hostBtn = document.getElementById('host-btn') as HTMLButtonElement;
-const joinCodeInput = document.getElementById('join-code-input') as HTMLInputElement;
+const joinCodeInput = document.getElementById(
+  'join-code-input',
+) as HTMLInputElement;
 const joinBtn = document.getElementById('join-btn') as HTMLButtonElement;
 const joinSpinner = document.getElementById('join-spinner') as HTMLDivElement;
-const joinSubmitContainer = document.getElementById('join-submit-container') as HTMLDivElement;
-const joinSubmitBtn = document.getElementById('join-submit-btn') as HTMLButtonElement;
+const joinSubmitContainer = document.getElementById(
+  'join-submit-container',
+) as HTMLDivElement;
+const joinSubmitBtn = document.getElementById(
+  'join-submit-btn',
+) as HTMLButtonElement;
 const numberInput = document.getElementById('number-input') as HTMLInputElement;
-const submitNumberBtn = document.getElementById('submit-number-btn') as HTMLButtonElement;
+const submitNumberBtn = document.getElementById(
+  'submit-number-btn',
+) as HTMLButtonElement;
 
 const step1 = document.getElementById('step-1') as HTMLDivElement;
 const step2Host = document.getElementById('step-2-host') as HTMLDivElement;
@@ -17,7 +25,9 @@ const step4 = document.getElementById('step-4') as HTMLDivElement;
 const step5 = document.getElementById('step-5') as HTMLDivElement;
 
 const hostCodeElement = document.getElementById('host-code') as HTMLDivElement;
-const resultValueElement = document.getElementById('result-value') as HTMLSpanElement;
+const resultValueElement = document.getElementById(
+  'result-value',
+) as HTMLSpanElement;
 
 let myNumber: number | null = null;
 
@@ -42,7 +52,9 @@ async function handleJoin() {
 }
 
 async function handleJoinSubmit() {
-  const joinCodeInput = document.getElementById('join-code-input') as HTMLInputElement;
+  const joinCodeInput = document.getElementById(
+    'join-code-input',
+  ) as HTMLInputElement;
   const code = joinCodeInput.value;
 
   joinSpinner.classList.remove('hidden');
@@ -55,7 +67,9 @@ async function handleJoinSubmit() {
 }
 
 async function handleSubmitNumber() {
-  const numberInput = document.getElementById('number-input') as HTMLInputElement;
+  const numberInput = document.getElementById(
+    'number-input',
+  ) as HTMLInputElement;
   myNumber = parseInt(numberInput.value, 10);
 
   if (myNumber === null || isNaN(myNumber)) {
