@@ -11,7 +11,7 @@
     "assert": "^2.1.0",
     "emp-wasm-backend": "^0.2.2",
     "mpc-framework": "^0.1.4",
-    "summon-ts": "file:../../summon-ts",
+    "summon-ts": "^0.3.0",
     "ws": "^8.18.0"
   },
   "devDependencies": {
