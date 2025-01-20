@@ -1,9 +1,9 @@
-
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
   extends: [
     'eslint:recommended',
+    'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
     'xo/browser',
   ],
@@ -22,8 +22,10 @@ module.exports = {
         caughtErrorsIgnorePattern: '^_',
       },
     ],
+    'comma-dangle': 'off',
     'no-undef': 'off',
     'no-mixed-operators': 'off',
+    'operator-linebreak': 'off',
     'no-bitwise': 'off',
     'no-constant-condition': 'off',
     'no-useless-constructor': 'off',
