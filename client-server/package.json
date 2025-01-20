@@ -7,7 +7,10 @@
     "dev": "concurrently npm:server npm:client",
     "client": "vite --host 0.0.0.0",
     "server": "tsx ./src/server/main.ts",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier -c .",
+    "format:fix": "prettier -w ."
   },
   "dependencies": {
     "emp-wasm-backend": "^0.2.2",
@@ -17,8 +20,17 @@
     "ws": "^8.18.0"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
     "@types/ws": "^8.5.13",
     "concurrently": "^9.1.2",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-config-xo": "^0.44.0",
+    "eslint-plugin-prettier": "^5.2.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "prettier": "^3.4.2",
     "tsx": "^4.19.2",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
