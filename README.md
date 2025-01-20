@@ -3,6 +3,7 @@
 This is a template repository designed to be the hello-world of [mpc-framework](https://github.com/voltrevo/mpc-framework). The repository contains three different examples:
 
 1. [**Client-Client**](/client-client): A web application built using [Vite](https://vite.dev/) that demonstrates peer-to-peer (p2p) computation between two clients. Communication is facilitated via [`rtc-pair-socket`](https://github.com/voltrevo/rtc-pair-socket) for direct client-to-client interaction.
+  - Looking for NextJS? Take a look at [npm create @mpc-cli](https://github.com/cedoor/mpc-cli)
 2. [**Client-Server**](/client-server): A web application, also built with [Vite](https://vite.dev/), that illustrates how a client and a server can collaboratively run a secure computation. Communication is established using WebSockets.
 3. [**Server-Server**](/server-server): An example showcasing how two servers can perform a secure MPC computation. This setup uses WebSockets for communication between the servers.
 
