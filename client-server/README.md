@@ -1,4 +1,4 @@
-# mpc-hello
+# mpc-hello (client <> server)
 
 This is a template repository designed to be the hello-world of
 [mpc-framework](https://github.com/voltrevo/mpc-framework).
@@ -14,6 +14,11 @@ and compute the larger of two numbers.
 - Simple frontend
 - Communication with WebSocket
 - Circuit code included via ordinary project files
+
+Below are other examples of mpc-hello applications you may want to explore:
+
+- [**Client-Client**](../client-client)
+- [**Server-Server**](../server-server)
 
 ## Running Locally
 

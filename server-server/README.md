@@ -13,6 +13,11 @@ It's a computation between two servers to find the larger of two numbers.
 - Communication with WebSocket
 - Circuit code included via ordinary project files
 
+Below are other examples of mpc-hello applications you may want to explore:
+
+- [**Client-Client**](../client-client)
+- [**Client-Server**](../client-server)
+
 ## Running Locally
 
 ```sh

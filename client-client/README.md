@@ -1,4 +1,4 @@
-# mpc-hello
+# mpc-hello (client <> client)
 
 This is a template repository designed to be the hello-world of
 [mpc-framework](https://github.com/voltrevo/mpc-framework).
@@ -16,6 +16,11 @@ Hosted on github pages: https://voltrevo.github.io/mpc-hello/.
 - Simple frontend
 - P2P end-to-end encrypted communication
 - Circuit code included via ordinary project files
+
+Below are other examples of mpc-hello applications you may want to explore:
+
+- [**Client-Server**](../client-server)
+- [**Server-Server**](../server-server)
 
 ## Running Locally
 
