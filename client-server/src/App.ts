@@ -25,7 +25,10 @@ export default class App {
     );
   }
 
-  async mpcLargest(value: number): Promise<number> {
+  async mpcLargest(value: number, onProgress?: (progress: number) => void): Promise<number> {
+    const TOTAL_BYTES = 274278;
+    let currentBytes = 0;
+
     const protocol = await generateProtocol(
       '/circuit/main.ts',
       await getCircuitFiles(),
@@ -35,6 +38,12 @@ export default class App {
       assert(to === 'bob', 'Unexpected party');
 
       this.socket.send(msg);
+
+      currentBytes += msg.byteLength;
+
+      if (onProgress) {
+        onProgress(currentBytes / TOTAL_BYTES);
+      }
     });
 
     this.msgQueue.stream((msg: unknown) => {
@@ -43,6 +52,12 @@ export default class App {
       }
 
       session.handleMessage('bob', msg);
+
+      currentBytes += msg.byteLength;
+
+      if (onProgress) {
+        onProgress(currentBytes / TOTAL_BYTES);
+      }
     });
 
     const output = await session.output();
