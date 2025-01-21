@@ -34,11 +34,17 @@ export default class App {
     });
   }
 
-  async mpcLargest(value: number): Promise<number> {
+  async mpcLargest(
+    value: number,
+    onProgress?: (progress: number) => void,
+  ): Promise<number> {
     const { party, socket } = this;
 
     assert(party !== undefined, 'Party must be set');
     assert(socket !== undefined, 'Socket must be set');
+
+    const TOTAL_BYTES = 274278;
+    let currentBytes = 0;
 
     const input = party === 'alice' ? { a: value } : { b: value };
     const otherParty = party === 'alice' ? 'bob' : 'alice';
@@ -48,6 +54,12 @@ export default class App {
     const session = protocol.join(party, input, (to, msg) => {
       assert(to === otherParty, 'Unexpected party');
       socket.send(msg);
+
+      currentBytes += msg.byteLength;
+
+      if (onProgress) {
+        onProgress(currentBytes / TOTAL_BYTES);
+      }
     });
 
     this.msgQueue.stream((msg: unknown) => {
@@ -56,6 +68,12 @@ export default class App {
       }
 
       session.handleMessage(otherParty, msg);
+
+      currentBytes += msg.byteLength;
+
+      if (onProgress) {
+        onProgress(currentBytes / TOTAL_BYTES);
+      }
     });
 
     const output = await session.output();

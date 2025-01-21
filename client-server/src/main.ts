@@ -9,6 +9,7 @@ const step1 = document.getElementById('step-1') as HTMLDivElement;
 const step2 = document.getElementById('step-2') as HTMLDivElement;
 const step3 = document.getElementById('step-3') as HTMLDivElement;
 
+const progressText = step2.querySelector('p') as HTMLParagraphElement;
 const resultValueElement = document.getElementById(
   'result-value',
 ) as HTMLSpanElement;
@@ -32,7 +33,14 @@ async function handleSubmitNumber() {
   step1.classList.add('hidden');
   step2.classList.remove('hidden');
 
-  const result = await app.mpcLargest(myNumber);
+  const result = await app.mpcLargest(myNumber, progress => {
+    const percentage = Math.floor(progress * 100);
+
+    // This allows it to start showing % when the MPC is actually started.
+    if (percentage > 1) {
+      progressText.innerText = `${percentage}%`;
+    }
+  });
 
   step2.classList.add('hidden');
   step3.classList.remove('hidden');
