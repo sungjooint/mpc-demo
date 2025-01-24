@@ -19,6 +19,7 @@ Below are other examples of mpc-hello applications you may want to explore:
 
 - [**Client-Client**](../client-client)
 - [**Server-Server**](../server-server)
+- [**MPC-Hello with Next.js**](../server-server)
 
 ## Running Locally
 
