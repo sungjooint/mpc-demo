@@ -26,7 +26,7 @@ npm run host
 npm run join
 ```
 
-The two input numbers are encoded in a constant for the sake of the example, and the computation's output will be displayed immediately.
+The two input numbers are entered interactively for the sake of the example, and the computation's output will be displayed immediately.
 
 ## License
 
