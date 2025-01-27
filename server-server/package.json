@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "server1": "tsx ./src/server1.ts",
-    "server2": "tsx ./src/server2.ts",
+    "host": "tsx ./src/host.ts",
+    "join": "tsx ./src/join.ts",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier -c .",
