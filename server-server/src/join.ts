@@ -1,9 +1,10 @@
-import { WebSocket } from 'ws';
 import assert from 'assert';
-import generateProtocol from './utils/generateProtocol';
 import inquirer from 'inquirer';
+import { WebSocket } from 'ws';
+import { PORT } from './utils/constants';
+import generateProtocol from './utils/generateProtocol';
 
-const ws = new WebSocket('ws://localhost:8080');
+const ws = new WebSocket(`ws://localhost:${PORT}`);
 
 ws.on('error', console.error);
 
@@ -28,5 +29,7 @@ ws.on('open', async () => {
 
   const { main } = await session.output();
 
-  console.info(`\nResult: ${main}`);
+  console.info(`\nThe largest number is: ${main}\n`);
+
+  ws.close();
 });

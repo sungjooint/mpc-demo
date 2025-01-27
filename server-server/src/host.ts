@@ -1,10 +1,10 @@
+import assert from 'assert';
+import inquirer from 'inquirer';
 import { Session } from 'mpc-framework';
 import { WebSocketServer } from 'ws';
-import assert from 'assert';
 import generateProtocol from './utils/generateProtocol';
-import inquirer from 'inquirer';
 
-const PORT = 8080;
+export const PORT = 8080;
 
 const wss = new WebSocketServer({ port: PORT });
 
@@ -33,7 +33,9 @@ wss.on('connection', async ws => {
       });
 
       session.output().then(({ main }) => {
-        console.log(`\nResult: ${main}`);
+        console.info(`\nThe largest number is: ${main}\n`);
+
+        wss.close();
       });
     }
 
