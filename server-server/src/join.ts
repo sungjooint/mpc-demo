@@ -1,9 +1,7 @@
 import { WebSocket } from 'ws';
 import assert from 'assert';
 import generateProtocol from './utils/generateProtocol';
-
-// Alice's circuit input.
-const NUMBER = 8;
+import inquirer from 'inquirer';
 
 const ws = new WebSocket('ws://localhost:8080');
 
@@ -12,7 +10,14 @@ ws.on('error', console.error);
 ws.on('open', async () => {
   const protocol = await generateProtocol('./src/circuit/main.ts');
 
-  const session = protocol.join('alice', { a: NUMBER }, (to, msg) => {
+  // Alice's circuit input.
+  const { number } = await inquirer.prompt({
+    type: 'input',
+    name: 'number',
+    message: 'Enter your number:',
+  });
+
+  const session = protocol.join('alice', { a: Number(number) }, (to, msg) => {
     assert(to === 'bob', 'Unexpected party');
     ws.send(msg);
   });
@@ -23,5 +28,5 @@ ws.on('open', async () => {
 
   const { main } = await session.output();
 
-  console.log(`Result: ${main}`);
+  console.info(`\nResult: ${main}`);
 });

@@ -2,15 +2,13 @@ import { Session } from 'mpc-framework';
 import { WebSocketServer } from 'ws';
 import assert from 'assert';
 import generateProtocol from './utils/generateProtocol';
+import inquirer from 'inquirer';
 
-// Bob's circuit input.
-const NUMBER = 4;
-
-const PORT = 8080
+const PORT = 8080;
 
 const wss = new WebSocketServer({ port: PORT });
 
-console.info(`Listening on port ${PORT}...`);
+console.info(`Listening on port ${PORT}...\n`);
 
 wss.on('connection', async ws => {
   ws.on('error', console.error);
@@ -19,16 +17,23 @@ wss.on('connection', async ws => {
 
   let session: Session;
 
-  ws.on('message', (msg: Buffer) => {
+  ws.on('message', async (msg: Buffer) => {
     if (!session) {
-      session = protocol.join('bob', { b: NUMBER }, (to, msg) => {
+      // Bob's circuit input.
+      const { number } = await inquirer.prompt({
+        type: 'input',
+        name: 'number',
+        message: 'Enter your number:',
+      });
+
+      session = protocol.join('bob', { b: Number(number) }, (to, msg) => {
         assert(to === 'alice', 'Unexpected party');
 
         ws.send(msg);
       });
 
       session.output().then(({ main }) => {
-        console.log(`Result: ${main}`);
+        console.log(`\nResult: ${main}`);
       });
     }
 
