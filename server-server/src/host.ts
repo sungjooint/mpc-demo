@@ -6,7 +6,11 @@ import generateProtocol from './utils/generateProtocol';
 // Bob's circuit input.
 const NUMBER = 4;
 
-const wss = new WebSocketServer({ port: 8080 });
+const PORT = 8080
+
+const wss = new WebSocketServer({ port: PORT });
+
+console.info(`Listening on port ${PORT}...`);
 
 wss.on('connection', async ws => {
   ws.on('error', console.error);
