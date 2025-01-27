@@ -3,9 +3,7 @@ import generateProtocol from '../utils/generateProtocol';
 import assert from '../utils/assert';
 import { readFileSync } from 'fs';
 import { Session } from 'mpc-framework';
-
-// Bob's circuit input.
-const NUMBER = 4;
+import inquirer from 'inquirer';
 
 const wss = new WebSocketServer({ port: 8080 });
 
@@ -19,16 +17,24 @@ wss.on('connection', async ws => {
 
   let session: Session;
 
-  ws.on('message', (msg: Buffer) => {
+  ws.on('message', async (msg: Buffer) => {
     if (!session) {
-      session = protocol.join('bob', { b: NUMBER }, (to, msg) => {
+      const { number } = await inquirer.prompt({
+        type: 'input',
+        name: 'number',
+        message: 'Enter your number:',
+      });
+
+      session = protocol.join('bob', { b: Number(number) }, (to, msg) => {
         assert(to === 'alice', 'Unexpected party');
 
         ws.send(msg);
       });
 
       session.output().then(({ main }) => {
-        console.log(`Result: ${main}`);
+        console.info(`\nThe largest number is: ${main}\n`);
+
+        ws.close();
       });
     }
 
