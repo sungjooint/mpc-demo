@@ -23,11 +23,11 @@ Below are other examples of mpc-hello applications you may want to explore:
 
 ```sh
 npm install
-npm run server1
-npm run server2
+npm run host
+npm run join
 ```
 
-The two input numbers are encoded in a constant for the sake of the example, and the computation's output will be displayed immediately.
+The two input numbers are entered interactively for the sake of the example, and the computation's output will be displayed immediately.
 
 ## License
 
