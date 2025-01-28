@@ -19,9 +19,9 @@ Hosted on github pages: https://voltrevo.github.io/mpc-hello/.
 
 Below are other examples of mpc-hello applications you may want to explore:
 
-- [**mpc-cli including NextJS**](https://github.com/cedoor/mpc-cli)
 - [**Client-Server**](../client-server)
 - [**Server-Server**](../server-server)
+- [**MPC-Hello with Next.js**](../next-js)
 
 ## Running Locally
 
