@@ -39,7 +39,7 @@ ws.on('open', async () => {
   // Return the MPC output to log the result.
   const { main } = await session.output();
 
-  console.info(`\nThe largest number is: ${main}\n`);
+  console.log(`Your number is ${main === 0 ? 'larger' : 'smaller'}`);
 
   ws.close();
 });

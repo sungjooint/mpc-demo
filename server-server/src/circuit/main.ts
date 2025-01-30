@@ -3,5 +3,5 @@
 import isLarger from './isLarger.ts';
 
 export default function main(a: number, b: number) {
-  return isLarger(a, b) ? a : b;
+  return isLarger(a, b) ? 0 : 1;
 }

@@ -29,7 +29,7 @@ export default class App {
   async mpcLargest(
     value: number,
     onProgress?: (progress: number) => void,
-  ): Promise<number> {
+  ): Promise<string> {
     const TOTAL_BYTES = 274278;
     let currentBytes = 0;
 
@@ -74,6 +74,6 @@ export default class App {
       throw new Error('Unexpected output');
     }
 
-    return output.main;
+    return output.main === 0 ? 'larger' : 'smaller';
   }
 }
