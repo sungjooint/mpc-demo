@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently npm:server npm:client",
-    "client": "vite --host 0.0.0.0",
-    "server": "tsx ./src/server/main.ts",
+    "join": "vite --host 0.0.0.0",
+    "host": "tsx ./src/server/host.ts",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier -c .",
@@ -20,9 +19,9 @@
     "ws": "^8.18.0"
   },
   "devDependencies": {
+    "@types/ws": "^8.5.13",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
-    "@types/ws": "^8.5.13",
     "concurrently": "^9.1.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^10.0.1",
@@ -30,6 +29,7 @@
     "eslint-plugin-prettier": "^5.2.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "inquirer": "^12.3.2",
     "prettier": "^3.4.2",
     "tsx": "^4.19.2",
     "typescript": "^5.2.2",

@@ -25,7 +25,8 @@ Below are other examples of mpc-hello applications you may want to explore:
 
 ```sh
 npm install
-npm run dev
+npm run host
+npm run join
 ```
 
 ## License

@@ -1,10 +1,11 @@
 import AsyncQueue from './utils/AsyncQueue';
 import assert from './utils/assert';
+import { PORT } from './utils/constants';
 import generateProtocol from './utils/generateProtocol';
 import getCircuitFiles from './utils/getCircuitFiles';
 
 export default class App {
-  socket: WebSocket = new WebSocket('ws://localhost:8080');
+  socket: WebSocket = new WebSocket(`ws://localhost:${PORT}`);
   msgQueue = new AsyncQueue<unknown>();
 
   constructor() {
@@ -25,7 +26,10 @@ export default class App {
     );
   }
 
-  async mpcLargest(value: number, onProgress?: (progress: number) => void): Promise<number> {
+  async mpcLargest(
+    value: number,
+    onProgress?: (progress: number) => void,
+  ): Promise<number> {
     const TOTAL_BYTES = 274278;
     let currentBytes = 0;
 
