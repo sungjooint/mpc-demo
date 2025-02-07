@@ -12,7 +12,7 @@
     "format:fix": "prettier -w ."
   },
   "dependencies": {
-    "emp-wasm-backend": "^0.2.3",
+    "emp-wasm-backend": "^0.3.0",
     "events": "^3.3.0",
     "mpc-framework": "^0.1.4",
     "summon-ts": "^0.3.1",
