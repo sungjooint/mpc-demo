@@ -42,7 +42,7 @@ ws.on('open', async () => {
   console.log(main);
 
   console.log(
-    `Your number is ${main === 0 ? 'smaller' : main === 1 ? 'larger' : 'equal'}`,
+    `Your number is ${main === 0 ? 'equal' : main === 1 ? 'larger' : 'smaller'}`,
   );
 
   ws.close();
