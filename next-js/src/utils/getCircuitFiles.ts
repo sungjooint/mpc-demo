@@ -4,6 +4,7 @@ export default async function getCircuitFiles() {
   const files: Record<string, string> = {
     'circuit/main.ts': '',
     'circuit/isLarger.ts': '',
+    'circuit/isEqual.ts': '',
   };
 
   for (const path of Object.keys(files)) {

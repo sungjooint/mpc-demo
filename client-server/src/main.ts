@@ -44,7 +44,7 @@ async function handleSubmitNumber() {
 
   step2.classList.add('hidden');
   step3.classList.remove('hidden');
-  resultValueElement.textContent = result.toString();
+  resultValueElement.textContent = `Your number is ${result}!`;
 }
 
 submitNumberBtn.addEventListener('click', handleSubmitNumber);

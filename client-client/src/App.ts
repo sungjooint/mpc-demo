@@ -37,13 +37,13 @@ export default class App {
   async mpcLargest(
     value: number,
     onProgress?: (progress: number) => void,
-  ): Promise<number> {
+  ): Promise<string> {
     const { party, socket } = this;
 
     assert(party !== undefined, 'Party must be set');
     assert(socket !== undefined, 'Socket must be set');
 
-    const TOTAL_BYTES = 274278;
+    const TOTAL_BYTES = 248476;
     let currentBytes = 0;
 
     const input = party === 'alice' ? { a: value } : { b: value };
@@ -86,6 +86,11 @@ export default class App {
       throw new Error('Unexpected output');
     }
 
-    return output.main;
+    return output.main === 0
+      ? 'equal'
+      : (output.main === 1 && party === 'alice') ||
+          (output.main === 2 && party === 'bob')
+        ? 'larger'
+        : 'smaller';
   }
 }

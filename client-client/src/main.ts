@@ -93,7 +93,7 @@ async function handleSubmitNumber() {
 
   step4.classList.add('hidden');
   step5.classList.remove('hidden');
-  resultValueElement.textContent = result.toString();
+  resultValueElement.textContent = `Your number is ${result}!`;
 }
 
 hostBtn.addEventListener('click', handleHost);

@@ -15,7 +15,8 @@ export default function Home() {
   const [party, setParty] = useState<string>();
   const [socket, setSocket] = useState<RtcPairSocket>();
   const [number, setNumber] = useState<number>();
-  const [result, setResult] = useState<number>();
+  const [result, setResult] = useState<string>();
+  const [progress, setProgress] = useState<number>(0);
 
   const handleHost = useCallback(async () => {
     // 128 bits of entropy
@@ -97,6 +98,8 @@ export default function Home() {
         }
 
         socket.send(msg);
+
+        setProgress(progress => (progress += msg.byteLength));
       });
 
       msgQueue.stream((msg: unknown) => {
@@ -105,6 +108,8 @@ export default function Home() {
         }
 
         session.handleMessage(otherParty, msg);
+
+        setProgress(progress => (progress += msg.byteLength));
       });
 
       const output = await session.output();
@@ -117,10 +122,28 @@ export default function Home() {
         throw new Error('Unexpected output');
       }
 
-      return output.main;
+      return output.main === 0
+        ? 'equal'
+        : (output.main === 1 && party === 'alice') ||
+            (output.main === 2 && party === 'bob')
+          ? 'larger'
+          : 'smaller';
     },
     [party, socket],
   );
+
+  const normalizeProgress = useCallback(() => {
+    const TOTAL_BYTES = 248476;
+
+    const percentage = Math.floor((progress / TOTAL_BYTES) * 100);
+
+    // This allows it to start showing % when the MPC is actually started.
+    if (percentage > 1) {
+      return percentage;
+    }
+
+    return 0;
+  }, [progress]);
 
   return (
     <div className={styles.app}>
@@ -145,9 +168,9 @@ export default function Home() {
               P2P connection. There is no server.
             </div>
             <div style={{ textAlign: 'left', marginTop: '1em' }}>
-              Once connected, both parties will enter a number and the larger
-              number will be calculated. The smaller number is kept
-              cryptographically secret.
+              Once connected, both parties will enter a number. Each party will
+              only be informed whether their number is the largest or not, but
+              both numbers are kept cryptographically secret.
             </div>
             <div style={{ textAlign: 'left', marginTop: '1em' }}>
               This is just a simple example, but mpc-framework makes it easy to
@@ -213,7 +236,11 @@ export default function Home() {
 
         {step === 4 && (
           <div className="step">
-            <p>Calculating...</p>
+            <p>
+              {normalizeProgress() < 1
+                ? 'Waiting...'
+                : `${normalizeProgress()}%`}
+            </p>
             <div className={styles['spinner-container']}>
               <div className={styles.spinner}></div>
             </div>
@@ -223,7 +250,7 @@ export default function Home() {
         {step === 5 && (
           <div className="step">
             <h2>
-              <span>{result}</span>
+              <span>Your number is {result}!</span>
             </h2>
           </div>
         )}
