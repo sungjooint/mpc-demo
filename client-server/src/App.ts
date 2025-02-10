@@ -74,6 +74,10 @@ export default class App {
       throw new Error('Unexpected output');
     }
 
-    return output.main === 0 ? 'larger' : 'smaller';
+    return output.main === 0
+      ? 'equal'
+      : output.main === 1
+        ? 'larger'
+        : 'smaller';
   }
 }

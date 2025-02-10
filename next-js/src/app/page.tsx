@@ -16,6 +16,7 @@ export default function Home() {
   const [socket, setSocket] = useState<RtcPairSocket>();
   const [number, setNumber] = useState<number>();
   const [result, setResult] = useState<string>();
+  const [progress, setProgress] = useState<number>(0);
 
   const handleHost = useCallback(async () => {
     // 128 bits of entropy
@@ -97,6 +98,8 @@ export default function Home() {
         }
 
         socket.send(msg);
+
+        setProgress(progress => (progress += msg.byteLength));
       });
 
       msgQueue.stream((msg: unknown) => {
@@ -105,6 +108,8 @@ export default function Home() {
         }
 
         session.handleMessage(otherParty, msg);
+
+        setProgress(progress => (progress += msg.byteLength));
       });
 
       const output = await session.output();
@@ -117,13 +122,28 @@ export default function Home() {
         throw new Error('Unexpected output');
       }
 
-      return (output.main === 0 && party === 'alice') ||
-        (output.main === 1 && party === 'bob')
-        ? 'larger'
-        : 'smaller';
+      return output.main === 0
+        ? 'equal'
+        : (output.main === 1 && party === 'alice') ||
+            (output.main === 2 && party === 'bob')
+          ? 'larger'
+          : 'smaller';
     },
     [party, socket],
   );
+
+  const normalizeProgress = useCallback(() => {
+    const TOTAL_BYTES = 274278;
+
+    const percentage = Math.floor((progress / TOTAL_BYTES) * 100);
+
+    // This allows it to start showing % when the MPC is actually started.
+    if (percentage > 1) {
+      return percentage;
+    }
+
+    return 0;
+  }, [progress]);
 
   return (
     <div className={styles.app}>
@@ -216,7 +236,11 @@ export default function Home() {
 
         {step === 4 && (
           <div className="step">
-            <p>Calculating...</p>
+            <p>
+              {normalizeProgress() < 1
+                ? 'Waiting...'
+                : `${normalizeProgress()}%`}
+            </p>
             <div className={styles['spinner-container']}>
               <div className={styles.spinner}></div>
             </div>

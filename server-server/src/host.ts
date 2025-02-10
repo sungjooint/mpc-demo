@@ -42,8 +42,6 @@ wss.on('connection', async ws => {
 
       // Handle the MPC output to log the result.
       session.output().then(({ main }) => {
-        console.log(main);
-
         console.log(
           `Your number is ${main === 0 ? 'equal' : main === 1 ? 'smaller' : 'larger'}`,
         );

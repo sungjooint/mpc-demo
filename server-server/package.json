@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "assert": "^2.1.0",
-    "emp-wasm-backend": "^0.3.0",
+    "emp-wasm-backend": "^0.3.1",
     "mpc-framework": "^0.1.4",
     "summon-ts": "^0.3.1",
     "ws": "^8.18.0"

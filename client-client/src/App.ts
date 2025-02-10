@@ -86,9 +86,11 @@ export default class App {
       throw new Error('Unexpected output');
     }
 
-    return (output.main === 0 && party === 'alice') ||
-      (output.main === 1 && party === 'bob')
-      ? 'larger'
-      : 'smaller';
+    return output.main === 0
+      ? 'equal'
+      : (output.main === 1 && party === 'alice') ||
+          (output.main === 2 && party === 'bob')
+        ? 'larger'
+        : 'smaller';
   }
 }

@@ -39,8 +39,6 @@ ws.on('open', async () => {
   // Return the MPC output to log the result.
   const { main } = await session.output();
 
-  console.log(main);
-
   console.log(
     `Your number is ${main === 0 ? 'equal' : main === 1 ? 'larger' : 'smaller'}`,
   );
