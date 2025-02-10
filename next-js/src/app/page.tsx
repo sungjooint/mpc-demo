@@ -133,7 +133,7 @@ export default function Home() {
   );
 
   const normalizeProgress = useCallback(() => {
-    const TOTAL_BYTES = 274278;
+    const TOTAL_BYTES = 248476;
 
     const percentage = Math.floor((progress / TOTAL_BYTES) * 100);
 

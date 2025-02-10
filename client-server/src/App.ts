@@ -30,7 +30,7 @@ export default class App {
     value: number,
     onProgress?: (progress: number) => void,
   ): Promise<string> {
-    const TOTAL_BYTES = 274278;
+    const TOTAL_BYTES = 248476;
     let currentBytes = 0;
 
     const protocol = await generateProtocol(
