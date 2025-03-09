@@ -2,7 +2,7 @@
 
 import AsyncQueue from '@/utils/AsyncQueue';
 import generateJoiningCode from '@/utils/generateJoiningCode';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { RtcPairSocket } from 'rtc-pair-socket';
 import styles from './page.module.css';
 import generateProtocol from '@/utils/generateProtocol';
