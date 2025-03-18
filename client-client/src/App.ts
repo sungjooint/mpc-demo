@@ -7,7 +7,6 @@ export default class App {
   socket?: RtcPairSocket;
   party?: 'alice' | 'bob';
   msgQueue = new AsyncQueue<unknown>();
-  totalBytes = 0;
 
   generateJoiningCode() {
     // 128 bits of entropy
@@ -57,7 +56,6 @@ export default class App {
       socket.send(msg);
 
       currentBytes += msg.byteLength;
-      this.totalBytes += msg.byteLength;
 
       if (onProgress) {
         onProgress(currentBytes / TOTAL_BYTES);
@@ -72,7 +70,6 @@ export default class App {
       session.handleMessage(otherParty, msg);
 
       currentBytes += msg.byteLength;
-      this.totalBytes += msg.byteLength;
 
       if (onProgress) {
         onProgress(currentBytes / TOTAL_BYTES);

@@ -39,11 +39,11 @@ const TOTAL_BYTES = 248476;
 ```
 
 When you change the circuit, this number needs to be changed to calculate the correct percentages.
-To do this, add a log when `totalBytesRef.current` is updated:
+To do this, add a log when `currentBytes` is updated:
 
 ```ts
-totalBytesRef.current += msg.byteLength;                     // Note: there are two of these
-console.log('Total bytes exchanged', totalBytesRef.current); // Add this line in both places
+currentBytes += msg.byteLength;                     // Note: there are two of these
+console.log('Total bytes exchanged', currentBytes); // Add this line in both places
 ```
 
 Run your app, note the highest value logged, and update `TOTAL_BYTES` to this value.

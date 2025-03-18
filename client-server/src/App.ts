@@ -7,7 +7,6 @@ import getCircuitFiles from './utils/getCircuitFiles';
 export default class App {
   socket: WebSocket = new WebSocket(`ws://localhost:${PORT}`);
   msgQueue = new AsyncQueue<unknown>();
-  totalBytes = 0;
 
   constructor() {
     this.socket.addEventListener('error', console.error, { once: true });
@@ -45,7 +44,6 @@ export default class App {
       this.socket.send(msg);
 
       currentBytes += msg.byteLength;
-      this.totalBytes += msg.byteLength;
 
       if (onProgress) {
         onProgress(currentBytes / TOTAL_BYTES);
@@ -61,7 +59,6 @@ export default class App {
 
       currentBytes += msg.byteLength;
 
-      this.totalBytes += msg.byteLength;
       if (onProgress) {
         onProgress(currentBytes / TOTAL_BYTES);
       }
