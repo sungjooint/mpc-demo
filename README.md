@@ -6,6 +6,7 @@ This is a template repository designed to be the hello-world of [mpc-framework](
   - Looking for NextJS? Take a look at [npm create @mpc-cli](https://github.com/cedoor/mpc-cli)
 2. [**Client-Server**](/client-server): A web application, also built with [Vite](https://vite.dev/), that illustrates how a client and a server can collaboratively run a secure computation. Communication is established using WebSockets.
 3. [**Server-Server**](/server-server): An example showcasing how two servers can perform a secure MPC computation. This setup uses WebSockets for communication between the servers.
+4. [**Deno-Deno**](/deno-deno): An example showcasing how two Deno servers can perform a secure MPC computation. This setup uses WebSockets for communication between the servers.
 
 ## Getting Started
 
