@@ -30,21 +30,16 @@ npm run dev
 
 ## Updating the Percentage Display
 
-The percentage display works using a constant `TOTAL_BYTES` and comparing this to the number of
-bytes sent and received:
+The percentage display works using a constant `TOTAL_BYTES` and comparing this
+to the number of bytes sent and received:
+
 ```ts
 const TOTAL_BYTES = 248476;
 ```
 
-When you change the circuit, this number needs to be changed to calculate the correct percentages.
-To do this, add a log when `totalBytesRef.current` is updated:
-
-```ts
-totalBytesRef.current += msg.byteLength;                     // Note: there are two of these
-console.log('Total bytes exchanged', totalBytesRef.current); // Add this line in both places
-```
-
-Run your app, note the highest value logged, and update `TOTAL_BYTES` to this value.
+When you change the circuit, this number needs to be changed to calculate the
+correct percentages. To find the new value, just run your app with dev tools
+open. An error message will be displayed containing the new value.
 
 ## License
 

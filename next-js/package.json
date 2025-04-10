@@ -11,6 +11,7 @@
     "format:fix": "prettier -w ."
   },
   "dependencies": {
+    "ee-typed": "^0.1.1",
     "emp-wasm-backend": "^0.3.1",
     "events": "^3.3.0",
     "mpc-framework": "^0.1.4",
