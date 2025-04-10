@@ -3,9 +3,8 @@
 This is a template repository designed to be the hello-world of
 [mpc-framework](https://github.com/voltrevo/mpc-framework).
 
-It uses [summon](https://github.com/voltrevo/summon) for circuit generation
-and [emp-wasm-backend](https://github.com/voltrevo/emp-wasm-backend) for
-secure 2PC.
+It uses [summon](https://github.com/voltrevo/summon) for circuit generation and
+[emp-wasm-backend](https://github.com/voltrevo/emp-wasm-backend) for secure 2PC.
 
 It's a minimal web app where users can make 1-to-1 connections with each other
 and compute the larger of two numbers.
@@ -32,21 +31,16 @@ npm run dev
 
 ## Updating the Percentage Display
 
-The percentage display works using a constant `TOTAL_BYTES` and comparing this to the number of
-bytes sent and received:
+The percentage display works using a constant `TOTAL_BYTES` and comparing this
+to the number of bytes sent and received:
+
 ```ts
 const TOTAL_BYTES = 248476;
 ```
 
-When you change the circuit, this number needs to be changed to calculate the correct percentages.
-To do this, add a log when `currentBytes` is updated:
-
-```ts
-currentBytes += msg.byteLength;                     // Note: there are two of these
-console.log('Total bytes exchanged', currentBytes); // Add this line in both places
-```
-
-Run your app, note the highest value logged, and update `TOTAL_BYTES` to this value.
+When you change the circuit, this number needs to be changed to calculate the
+correct percentages. To find the new value, just run your app with dev tools
+open. An error message will be displayed containing the new value.
 
 ## License
 

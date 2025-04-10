@@ -43,7 +43,7 @@ export default class App {
     assert(party !== undefined, 'Party must be set');
     assert(socket !== undefined, 'Socket must be set');
 
-    const TOTAL_BYTES = 248476;
+    const TOTAL_BYTES = 247331;
     let currentBytes = 0;
 
     const input = party === 'alice' ? { a: value } : { b: value };
@@ -77,6 +77,16 @@ export default class App {
     });
 
     const output = await session.output();
+
+    if (currentBytes !== TOTAL_BYTES) {
+      console.error(
+        [
+          'Bytes sent & received was not equal to TOTAL_BYTES.',
+          ' This causes incorrect progress calculations.',
+          ` To fix, updated TOTAL_BYTES to ${currentBytes}.`,
+        ].join(''),
+      );
+    }
 
     if (
       output === null ||
