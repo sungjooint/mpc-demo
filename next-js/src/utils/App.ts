@@ -2,13 +2,18 @@ import { RtcPairSocket } from 'rtc-pair-socket';
 import AsyncQueue from './AsyncQueue';
 import assert from './assert';
 import generateProtocol from './generateProtocol';
+import UsableField from './UsableField';
 
 export default class App {
+  step = new UsableField(1);
+  party = new UsableField<'alice' | 'bob' | undefined>(undefined);
+  progress = new UsableField(0);
+  joiningCode = new UsableField('');
+
   socket?: RtcPairSocket;
-  party?: 'alice' | 'bob';
   msgQueue = new AsyncQueue<unknown>();
 
-  generateJoiningCode() {
+  static generateJoiningCode() {
     // 128 bits of entropy
     return [
       Math.random().toString(36).substring(2, 12),
@@ -17,8 +22,21 @@ export default class App {
     ].join('');
   }
 
+  host() {
+    const joiningCode = App.generateJoiningCode();
+    this.joiningCode.set(joiningCode);
+    this.step.set(2);
+
+    this.connect(joiningCode, 'alice');
+  }
+
+  join() {
+    this.step.set(2);
+    this.party.set('bob');
+  }
+
   async connect(code: string, party: 'alice' | 'bob') {
-    this.party = party;
+    this.party.set(party);
     const socket = new RtcPairSocket(code, party);
     this.socket = socket;
 
@@ -32,13 +50,13 @@ export default class App {
       socket.on('open', resolve);
       socket.on('error', reject);
     });
+
+    this.step.set(3);
   }
 
-  async mpcLargest(
-    value: number,
-    onProgress?: (progress: number) => void,
-  ): Promise<string> {
-    const { party, socket } = this;
+  async mpcLargest(value: number): Promise<string> {
+    const { socket } = this;
+    const party = this.party.value;
 
     assert(party !== undefined, 'Party must be set');
     assert(socket !== undefined, 'Socket must be set');
@@ -56,10 +74,7 @@ export default class App {
       socket.send(msg);
 
       currentBytes += msg.byteLength;
-
-      if (onProgress) {
-        onProgress(currentBytes / TOTAL_BYTES);
-      }
+      this.progress.set(currentBytes / TOTAL_BYTES);
     });
 
     this.msgQueue.stream((msg: unknown) => {
@@ -71,9 +86,7 @@ export default class App {
 
       currentBytes += msg.byteLength;
 
-      if (onProgress) {
-        onProgress(currentBytes / TOTAL_BYTES);
-      }
+      this.progress.set(currentBytes / TOTAL_BYTES);
     });
 
     const output = await session.output();

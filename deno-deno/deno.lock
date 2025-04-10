@@ -12,9 +12,9 @@
     "jsr:@std/net@^1.0.4": "1.0.4",
     "jsr:@std/path@^1.0.8": "1.0.8",
     "jsr:@std/streams@^1.0.9": "1.0.9",
-    "npm:emp-wasm-backend@~0.3.2": "0.3.2",
-    "npm:mpc-framework@0.2": "0.2.0",
-    "npm:summon-ts@~0.3.1": "0.3.1"
+    "npm:emp-wasm-backend@0.4": "0.4.0",
+    "npm:mpc-framework@~0.2.1": "0.2.1",
+    "npm:summon-ts@~0.5.3": "0.5.3"
   },
   "jsr": {
     "@std/assert@1.0.12": {
@@ -105,8 +105,8 @@
         "typed-emitter"
       ]
     },
-    "emp-wasm-backend@0.3.2": {
-      "integrity": "sha512-wHsazRZQcDUflr31AIcTi3k8tsJENo9dbsm88PEU5l64ozCP47YDESrmx9r9F397PrTxZQ3IkxQbz3mCx2FDLg==",
+    "emp-wasm-backend@0.4.0": {
+      "integrity": "sha512-Jn7ybuzZAWi4PtTxLqrQ/tah0SEOf0XN1V6vF6ygqVDD7vGiEmCyFlI8yNe0tsfn2v6ja97w+h5XL+uhOr75pg==",
       "dependencies": [
         "@msgpack/msgpack",
         "@noble/hashes",
@@ -115,8 +115,8 @@
         "sort-keys"
       ]
     },
-    "emp-wasm@0.2.2": {
-      "integrity": "sha512-KcWLo1aEiAEFUOT1obFig77qvbkG+fuZ8tXIjyi5SdqkxsBg+nNFqKX2pGv0QStvkHcjtjt/VOwJKe92kT+TSA==",
+    "emp-wasm@0.2.3": {
+      "integrity": "sha512-nWP2v1vxF3O48r5Q/3mAh9pn1wbEb/6zABJ7z5RbvboVFAfSOtS+9wfeMbL9kjq1U/YDaE2UETAkMPskdNXNPA==",
       "dependencies": [
         "ee-typed",
         "events"
@@ -131,8 +131,8 @@
     "mpc-framework-common@0.1.1": {
       "integrity": "sha512-D+o1vSdFPl9v55c0kgM2dGcUR0IZQn3teeQHA5pWiwjokbMt7uiNHHqQKyrzsY2Y4TfBbVKjnS9yjM6szIO5Ng=="
     },
-    "mpc-framework@0.2.0": {
-      "integrity": "sha512-cKVWsybCD6k+fAVkPVY8kjLkesKnj60OytCU/5Zn7kres9Xxw3EN9Z6ICvTK/MN16Lh4u1YDXBcI1cEiAyrVXw==",
+    "mpc-framework@0.2.1": {
+      "integrity": "sha512-fcjBCxBR8bLSmLOYi10WnuySbVBHr5UpCrW5KFxJy+xZoqLX4JJVetOY8OZ7AwGtEIQTMiyU2Wyavw/qkKwvqQ==",
       "dependencies": [
         "ee-typed",
         "mpc-framework-common",
@@ -176,8 +176,8 @@
         "is-plain-obj"
       ]
     },
-    "summon-ts@0.3.1": {
-      "integrity": "sha512-WYX7Mdr6BTlNiRKVvGYNWfSqSXdngZ6WI583iU+TtR61DPQ3DT5c6kiFncxppGZykJLGN2CV4YYqOgNFCLQXUw=="
+    "summon-ts@0.5.3": {
+      "integrity": "sha512-fxuP/SzRxo0HiSp7cItLc7Lr5QkPT66+JfzpMtpLzi6wjESp9d+C2uz/WAkmn7F/3D4vxZPE0K2YdT87IC8EfQ=="
     },
     "tslib@2.8.1": {
       "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="
@@ -199,9 +199,9 @@
     "dependencies": [
       "jsr:@std/assert@^1.0.12",
       "jsr:@std/http@^1.0.14",
-      "npm:emp-wasm-backend@~0.3.2",
-      "npm:mpc-framework@0.2",
-      "npm:summon-ts@~0.3.1"
+      "npm:emp-wasm-backend@0.4",
+      "npm:mpc-framework@~0.2.1",
+      "npm:summon-ts@~0.5.3"
     ]
   }
 }

@@ -6,7 +6,7 @@ import { EmpWasmBackend } from 'emp-wasm-backend';
 export default async function generateProtocol(mainFile: string) {
   await summon.init();
 
-  const circuit = summon.compileBoolean(mainFile, 16, (filePath: string) =>
+  const { circuit } = summon.compileBoolean(mainFile, 16, (filePath: string) =>
     readFileSync(filePath, 'utf8'),
   );
 
