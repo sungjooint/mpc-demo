@@ -8,7 +8,7 @@ export default async function generateProtocol(
 ) {
   await summon.init();
 
-  const circuit = summon.compileBoolean(mainFile, 16, filesOrFileReader);
+  const { circuit } = summon.compileBoolean(mainFile, 16, filesOrFileReader);
 
   const mpcSettings = [
     {

@@ -30,7 +30,7 @@ export default class App {
     value: number,
     onProgress?: (progress: number) => void,
   ): Promise<string> {
-    const TOTAL_BYTES = 248476;
+    const TOTAL_BYTES = 247331;
     let currentBytes = 0;
 
     const protocol = await generateProtocol(
@@ -65,6 +65,16 @@ export default class App {
     });
 
     const output = await session.output();
+
+    if (currentBytes !== TOTAL_BYTES) {
+      console.error(
+        [
+          'Bytes sent & received was not equal to TOTAL_BYTES.',
+          ' This causes incorrect progress calculations.',
+          ` To fix, updated TOTAL_BYTES to ${currentBytes}.`,
+        ].join(''),
+      );
+    }
 
     if (
       output === null ||
