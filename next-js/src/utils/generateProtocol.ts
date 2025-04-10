@@ -6,7 +6,7 @@ import getCircuitFiles from './getCircuitFiles';
 export default async function generateProtocol() {
   await summon.init();
 
-  const circuit = summon.compileBoolean(
+  const { circuit } = summon.compileBoolean(
     'circuit/main.ts',
     16,
     await getCircuitFiles(),

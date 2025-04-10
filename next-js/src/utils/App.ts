@@ -61,7 +61,7 @@ export default class App {
     assert(party !== undefined, 'Party must be set');
     assert(socket !== undefined, 'Socket must be set');
 
-    const TOTAL_BYTES = 248476;
+    const TOTAL_BYTES = 247331;
     let currentBytes = 0;
 
     const input = party === 'alice' ? { a: value } : { b: value };
