@@ -1,6 +1,11 @@
 'use client';
 
-import AsyncQueue from '@/utils/AsyncQueue';
+import {
+  AsyncQueue,
+  CommitmentMessage,
+  Message,
+  SetupMessage,
+} from '@/utils/AsyncQueue';
 import generateJoiningCode from '@/utils/generateJoiningCode';
 import { useCallback, useRef, useState } from 'react';
 import { RtcPairSocket } from 'rtc-pair-socket';
@@ -15,48 +20,7 @@ import {
   intToUint8Array2,
 } from '@trinity/core';
 
-declare global {
-  interface Window {
-    aliceEvaluator: TrinityEvaluator | null;
-    aliceProtocol: {
-      trinityModule: TrinityModule;
-      circuit_parsed: CircuitWrapper;
-    } | null;
-  }
-}
-
-interface SetupMessage {
-  type: 'setup';
-  setupObj: number[];
-}
-
-interface CommitmentMessage {
-  type: 'commitment';
-  commitment: string;
-}
-
-interface NumberMessage {
-  type: 'number';
-  number: number;
-}
-
-interface GarblerBundleMessage {
-  type: 'garblerBundle';
-  garblerBundle: number[];
-}
-
-interface ResultMessage {
-  type: 'result';
-  result: string;
-}
-
-type Message =
-  | SetupMessage
-  | CommitmentMessage
-  | NumberMessage
-  | GarblerBundleMessage
-  | ResultMessage;
-
+// Helper function to convert an integer to a Uint8Array
 function booleanArrayToInteger(boolArray: Uint8Array): number {
   return boolArray.reduce((acc, bit, index) => {
     return acc + (bit ? 1 : 0) * Math.pow(2, index);
@@ -64,6 +28,12 @@ function booleanArrayToInteger(boolArray: Uint8Array): number {
 }
 
 export default function Home() {
+  const evaluatorRef = useRef<TrinityEvaluator | null>(null);
+  const protocolRef = useRef<{
+    trinityModule: TrinityModule;
+    circuit_parsed: CircuitWrapper;
+  } | null>(null);
+
   const [msgQueue] = useState(new AsyncQueue<Message>());
   const [step, setStep] = useState<number>(1);
   const [joiningCode, setJoiningCode] = useState<string>();
@@ -74,16 +44,10 @@ export default function Home() {
   const [result, setResult] = useState<string>();
   const [commitmentValue, setCommitmentValue] = useState<string>();
   const [setupObjValue, setSetupObjValue] = useState<Uint8Array>();
-  const [evaluator, setEvaluator] = useState<TrinityEvaluator | null>(null);
-  const [trinitySetup, setTrinitySetup] = useState<TrinityWasmSetup | null>(
-    null,
-  );
-  const [progress, setProgress] = useState<number>(0);
   const [protocol, setProtocol] = useState<{
     trinityModule: TrinityModule;
     circuit_parsed: CircuitWrapper;
   } | null>(null);
-  const totalBytesRef = useRef(0);
 
   const handleCommit = useCallback(async () => {
     if (!number) {
@@ -93,20 +57,19 @@ export default function Home() {
 
     const protocol = await generateProtocol();
     setProtocol(protocol);
+    protocolRef.current = protocol;
 
     const trinitySetup = protocol.trinityModule.TrinityWasmSetup('Plain');
+
     const evaluator = protocol.trinityModule.TrinityEvaluator(
       trinitySetup,
       intToUint8Array2(number),
     );
 
+    evaluatorRef.current = evaluator;
+
     const code = generateJoiningCode();
     setJoiningCode(code);
-
-    setTrinitySetup(trinitySetup);
-    setEvaluator(evaluator);
-    window.aliceEvaluator = evaluator;
-    window.aliceProtocol = protocol;
 
     setStep(2.1);
 
@@ -220,8 +183,8 @@ export default function Home() {
           const parsedMsg = JSON.parse(msg as string) as Message;
 
           if (parsedMsg.type === 'garblerBundle' && party === 'alice') {
-            const currentProtocol = window.aliceProtocol || null;
-            const currentEvaluator = window.aliceEvaluator || null;
+            const currentProtocol = protocolRef.current;
+            const currentEvaluator = evaluatorRef.current;
 
             if (!currentEvaluator) {
               console.error('Alice: Evaluator not initialized');
@@ -297,18 +260,6 @@ export default function Home() {
     [msgQueue],
   );
 
-  const normalizeProgress = useCallback(() => {
-    const TOTAL_BYTES = 248476;
-
-    const percentage = Math.floor((progress / TOTAL_BYTES) * 100);
-
-    if (percentage > 1) {
-      return percentage;
-    }
-
-    return 0;
-  }, [progress]);
-
   return (
     <div className={styles.app}>
       <div className={styles.header}>MPC Hello</div>
@@ -332,13 +283,14 @@ export default function Home() {
               P2P connection. There is no server.
             </div>
             <div style={{ textAlign: 'left', marginTop: '1em' }}>
-              Once connected, both parties will enter a number. Each party will
-              only be informed whether their number is the largest or not, but
-              both numbers are kept cryptographically secret.
+              Once connected, both parties will enter a number. The protocol
+              will securely compute the sum of both numbers without either party
+              revealing their input to the other. Both numbers are kept
+              cryptographically secret throughout the process.
             </div>
             <div style={{ textAlign: 'left', marginTop: '1em' }}>
-              This is just a simple example, but mpc-framework makes it easy to
-              do this with any function.
+              This is just a simple example, Trinity as engine with
+              mpc-framework makes it easy to do this with any function.
             </div>
             <div>
               <button
@@ -439,11 +391,7 @@ export default function Home() {
 
         {step === 4 && (
           <div className="step">
-            <p>
-              {normalizeProgress() < 1
-                ? 'Waiting...'
-                : `${normalizeProgress()}%`}
-            </p>
+            <p>'Waiting...'</p>
             <div className={styles['spinner-container']}>
               <div className={styles.spinner}></div>
             </div>

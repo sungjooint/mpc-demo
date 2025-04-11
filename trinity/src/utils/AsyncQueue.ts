@@ -1,4 +1,4 @@
-export default class AsyncQueue<T> {
+class AsyncQueue<T> {
   messages: T[] = [];
   pendingResolves: ((msg: T) => void)[] = [];
 
@@ -71,3 +71,38 @@ export default class AsyncQueue<T> {
     };
   }
 }
+
+interface SetupMessage {
+  type: 'setup';
+  setupObj: number[];
+}
+
+interface CommitmentMessage {
+  type: 'commitment';
+  commitment: string;
+}
+
+interface NumberMessage {
+  type: 'number';
+  number: number;
+}
+
+interface GarblerBundleMessage {
+  type: 'garblerBundle';
+  garblerBundle: number[];
+}
+
+interface ResultMessage {
+  type: 'result';
+  result: string;
+}
+
+type Message =
+  | SetupMessage
+  | CommitmentMessage
+  | NumberMessage
+  | GarblerBundleMessage
+  | ResultMessage;
+
+export { AsyncQueue };
+export type { Message, CommitmentMessage, SetupMessage };
