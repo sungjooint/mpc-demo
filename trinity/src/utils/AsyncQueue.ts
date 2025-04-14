@@ -3,7 +3,6 @@ class AsyncQueue<T> {
   pendingResolves: ((msg: T) => void)[] = [];
 
   push(msg: T) {
-    console.log('QUEUE: Pushing message:', msg);
     if (this.pendingResolves.length > 0) {
       const pendingResolve = this.pendingResolves.shift()!;
       pendingResolve(msg);
@@ -14,10 +13,6 @@ class AsyncQueue<T> {
   }
 
   async shift(abortSignal?: AbortSignal): Promise<T> {
-    console.log(
-      'QUEUE: Attempting to shift, queue length:',
-      this.messages.length,
-    );
     if (this.messages.length > 0) {
       return this.messages.shift()!;
     }

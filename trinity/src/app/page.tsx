@@ -18,7 +18,7 @@ import {
   TrinityModule,
   TrinityWasmSetup,
   intToUint8Array2,
-} from '@trinity/core';
+} from '@trinity_2pc/core';
 
 // Helper function to convert an integer to a Uint8Array
 function booleanArrayToInteger(boolArray: Uint8Array): number {
@@ -73,27 +73,25 @@ export default function Home() {
 
     setStep(2.1);
 
-    (async () => {
-      const newSocket = await connect(code, 'alice');
+    const newSocket = await connect(code, 'alice');
 
-      newSocket?.send(
-        JSON.stringify({
-          type: 'setup',
-          setupObj: Array.from(
-            trinitySetup.to_sender_setup() || new Uint8Array(),
-          ),
-        }),
-      );
+    newSocket?.send(
+      JSON.stringify({
+        type: 'setup',
+        setupObj: Array.from(
+          trinitySetup.to_sender_setup() || new Uint8Array(),
+        ),
+      }),
+    );
 
-      newSocket?.send(
-        JSON.stringify({
-          type: 'commitment',
-          commitment: evaluator.commitment_serialized,
-        }),
-      );
+    newSocket?.send(
+      JSON.stringify({
+        type: 'commitment',
+        commitment: evaluator.commitment_serialized,
+      }),
+    );
 
-      setStep(4);
-    })();
+    setStep(4);
   }, [number]);
 
   const handleJoin = useCallback(() => {
@@ -143,13 +141,11 @@ export default function Home() {
     }
 
     if (!setupObjValue) {
-      alert('Setup is missing');
-      return;
+      throw new Error('Setup object is missing');
     }
 
     if (!commitmentValue) {
-      alert('Commitment value is missing');
-      return;
+      throw new Error('Commitment value is missing');
     }
 
     let garblerSetup = TrinityWasmSetup.from_sender_setup(setupObjValue);
@@ -239,7 +235,6 @@ export default function Home() {
 
       await new Promise<void>((resolve, reject) => {
         const openHandler = () => {
-          console.log(`${party}: Open handler fired`);
           socket.off('open', openHandler);
           resolve();
         };
@@ -249,12 +244,10 @@ export default function Home() {
 
       await new Promise<void>(resolve => {
         setTimeout(() => {
-          console.log(`${party}: Connection check complete`);
           resolve();
         }, 500);
       });
 
-      console.log(`${party}: Connect function complete`);
       return socket;
     },
     [msgQueue],
@@ -391,7 +384,7 @@ export default function Home() {
 
         {step === 4 && (
           <div className="step">
-            <p>'Waiting...'</p>
+            <p>Waiting...</p>
             <div className={styles['spinner-container']}>
               <div className={styles.spinner}></div>
             </div>
