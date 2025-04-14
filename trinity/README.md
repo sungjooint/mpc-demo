@@ -1,19 +1,24 @@
 # mpc-hello with NextJS (client <> client)
 
 This is a template repository designed to be the hello-world of
-[mpc-framework](https://github.com/voltrevo/mpc-framework).
+[trinity](https://github.com/privacy-scaling-explorations/Trinity).
 
 It uses [summon](https://github.com/voltrevo/summon) for circuit generation
-and [emp-wasm-backend](https://github.com/voltrevo/emp-wasm-backend) for
+and [Trinity](https://github.com/privacy-scaling-explorations/Trinity) for
 secure 2PC.
 
 It's a minimal web app where users can make 1-to-1 connections with each other
 and compute the larger of two numbers, built with Next.js.
 
-- 250 sloc
 - Simple frontend
 - P2P end-to-end encrypted communication
 - Circuit code included via ordinary project files
+- Can be run into `Plain` or `Halo2` mode, by switching up the following line.
+
+```js
+type mode = 'Plain' | 'Halo2'
+const trinitySetup = protocol.trinityModule.TrinityWasmSetup(mode);
+```
 
 Below are other examples of mpc-hello applications you may want to explore:
 
@@ -27,24 +32,6 @@ Below are other examples of mpc-hello applications you may want to explore:
 npm install
 npm run dev
 ```
-
-## Updating the Percentage Display
-
-The percentage display works using a constant `TOTAL_BYTES` and comparing this to the number of
-bytes sent and received:
-```ts
-const TOTAL_BYTES = 248476;
-```
-
-When you change the circuit, this number needs to be changed to calculate the correct percentages.
-To do this, add a log when `totalBytesRef.current` is updated:
-
-```ts
-totalBytesRef.current += msg.byteLength;                     // Note: there are two of these
-console.log('Total bytes exchanged', totalBytesRef.current); // Add this line in both places
-```
-
-Run your app, note the highest value logged, and update `TOTAL_BYTES` to this value.
 
 ## License
 
