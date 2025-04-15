@@ -18,7 +18,7 @@ import {
   TrinityModule,
   TrinityWasmSetup,
   intToUint8Array2,
-} from '@trinity_2pc/core';
+} from '@trinity-2pc/core';
 
 // Helper function to convert an integer to a Uint8Array
 function booleanArrayToInteger(boolArray: Uint8Array): number {

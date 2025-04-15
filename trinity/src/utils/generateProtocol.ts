@@ -1,6 +1,6 @@
 import * as summon from 'summon-ts';
 import getCircuitFiles from './getCircuitFiles';
-import { initTrinity, parse_circuit } from '@trinity_2pc/core';
+import { initTrinity, parseCircuit } from '@trinity-2pc/core';
 
 export default async function generateProtocol() {
   await summon.init();
@@ -12,7 +12,7 @@ export default async function generateProtocol() {
     await getCircuitFiles(),
   );
 
-  let circuit_parsed = parse_circuit(circuit.circuit.bristol, 16, 16, 16);
+  let circuit_parsed = parseCircuit(circuit.circuit.bristol, 16, 16, 16);
 
   return { trinityModule, circuit_parsed };
 }
