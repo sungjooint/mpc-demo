@@ -1,9 +1,10 @@
+
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MPC Hello</title>
+    <title>MPC C-C Demo</title>
     <link rel="stylesheet" href="src/styles.css" />
   </head>
 
@@ -11,28 +12,24 @@
     <!-- gh pages deployment check -->
 
     <div class="app">
-      <div class="header">MPC Hello</div>
+      <div class="header">MPC(MultiParty Computation) 기본 데모</div>
 
       <div class="step-container">
         <div id="step-1" class="step">
           <div style="text-align: left">
-            Welcome to the hello-world of MPC (<a
-              href="https://github.com/voltrevo/mpc-hello"
-              >view source</a
-            >).
+            환영합니다. MPC 기본 데모입니다.
           </div>
           <div style="text-align: left; margin-top: 1em">
-            To start, one party should click host. This will generate a code
-            that the other party can use to join. It's an end-to-end encrypted
-            P2P connection. There is no server.
+            시작하려면 A 가입자가 호스트를 클릭해야 합니다. 
+            이렇게 하면 B 가입자가 참가하는 데 사용할 수 있는 코드가 생성됩니다. 
+            서버 연결이 없는 엔드 투 엔드간 암호화된 P2P 보안연결 네트워크 입니다.
           </div>
           <div style="text-align: left; margin-top: 1em">
-            Once connected, both parties will enter a number. Each party will only be informed whether their
-            number is the largest or not, but both numbers are kept cryptographically secret.
+            연결되면 양측 가입자 모두 숫자(DIGIT)를 입력합니다. 
+            각 가입자는 자신의 숫자(DIGIT)가 다른 가입자의 숫자보다 큰 숫자인지의 여부를 알려주지만, 두 DIGIT는 모두 암호화된 비밀로 유지됩니다.
           </div>
           <div style="text-align: left; margin-top: 1em">
-            This is just a simple example, but mpc-framework makes it easy to do
-            this with any function.
+           이것은 보안화된 DIGIT를 연산(Computation)하는 단순한 예시입니다. mpc-framework를 사용하면 다양한 환경에서 mpc 함수가 적용가능합니다. 
           </div>
           <div>
             <button id="host-btn">Host</button>&nbsp;
@@ -47,7 +44,7 @@
 
         <div id="step-2-join" class="step hidden">
           <div>
-            <label for="join-code-input">Enter host code:</label>
+            <label for="join-code-input">호스트 코드를 입력하세요:</label>
             <input type="text" id="join-code-input" />
           </div>
           <div id="join-submit-container">
@@ -60,11 +57,11 @@
 
         <div id="step-3" class="step hidden">
           <div>
-            <label for="number-input">Enter your number:</label>
+            <label for="number-input">숫자를 입력하세요:</label>
             <input type="number" id="number-input" />
           </div>
           <div>
-            <button id="submit-number-btn">Submit</button>
+            <button id="submit-number-btn">제출</button>
           </div>
         </div>
 
@@ -84,3 +81,4 @@
     <script type="module" src="src/main.ts"></script>
   </body>
 </html>
+
